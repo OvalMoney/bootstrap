@@ -1,11 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
 # Turn your mac into an Oval development machine :)
-
-fancy_echo() {
-  local fmt="$1"; shift
-  printf "\n$fmt\n" "$@"
-}
 
 BASH_PROFILE="$HOME/.bash_profile"
 
@@ -26,12 +21,12 @@ append_to_bash_profile() {
   fi
 }
 
-fancy_echo "Setting locale to en_US.UTF-8 ..."
+echo "Setting locale to en_US.UTF-8 ..."
 append_to_bash_profile '# set locale'
 append_to_bash_profile 'export LC_ALL=en_US.UTF-8' 1
 append_to_bash_profile 'export LANG=en_US.UTF-8' 1
 
-fancy_echo "Installing Xcode CLI tools ..."
+echo "Installing Xcode CLI tools ..."
 touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
 softwareupdate -i "$PROD" -v
@@ -49,14 +44,15 @@ else
 fi
 
 if ! command -v brew >/dev/null; then
-  fancy_echo "Installing Homebrew ..."
+  echo "Installing Homebrew ..."
   curl -fsS 'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
   append_to_bash_profile '# recommended by brew doctor'
-  append_to_bash_profile 'export PATH="/usr/local/sbin:/usr/local/bin:$PATH"' 1
+  append_to_bash_profile 'export PATH="/usr/local/bin:$PATH"' 1
+  append_to_bash_profile 'export PATH="/usr/local/sbin:$PATH"' 1
   export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 fi
 
-fancy_echo "Updating Homebrew formulae ..."
+echo "Updating Homebrew formulae ..."
 brew update
 brew bundle --file=- <<EOF
 # Unix
@@ -74,7 +70,7 @@ brew "mariadb"
 brew "postgres"
 EOF
 
-fancy_echo "Configuring pyenv ..."
-append_to_bash_profile '# pyenv'
+echo "Configuring pyenv ..."
+append_to_bash_profile "# pyenv"
 append_to_bash_profile 'if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi' 1
 append_to_bash_profile 'if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi' 1
