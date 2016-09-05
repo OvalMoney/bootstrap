@@ -50,10 +50,10 @@ fi
 
 if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew ..."
-    curl -fsS 'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
-    append_to_bash_profile '# recommended by brew doctor'
-    append_to_bash_profile 'export PATH="/usr/local/sbin:/usr/local/bin:$PATH"' 1
-    export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+  curl -fsS 'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
+  append_to_bash_profile '# recommended by brew doctor'
+  append_to_bash_profile 'export PATH="/usr/local/sbin:/usr/local/bin:$PATH"' 1
+  export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 fi
 
 fancy_echo "Updating Homebrew formulae ..."
