@@ -11,5 +11,5 @@ Download, review, then execute the script:
 ```sh
 curl -O https://raw.githubusercontent.com/OvalMoney/bootstrap/master/mac.sh
 less mac.sh
-sh mac
+sh mac.sh
 ```
