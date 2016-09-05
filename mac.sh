@@ -31,7 +31,7 @@ append_to_bash_profile '# set locale'
 append_to_bash_profile 'export LC_ALL=en_US.UTF-8' 1
 append_to_bash_profile 'export LANG=en_US.UTF-8' 1
 
-fancy_echo "Installing Xcode CLI tools"
+fancy_echo "Installing Xcode CLI tools ..."
 touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
 PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
 softwareupdate -i "$PROD" -v
