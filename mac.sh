@@ -66,8 +66,7 @@ brew "python3"
 brew "pyenv"
 brew "pyenv-virtualenv"
 # Databases
-brew "mariadb"
-brew "postgres"
+brew "mysql"
 EOF
 
 echo "Configuring pyenv ..."
