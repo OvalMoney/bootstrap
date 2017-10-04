@@ -58,8 +58,6 @@ brew bundle --file=- <<EOF
 # Unix
 brew "wget"
 brew "openssl"
-# Heroku
-brew "heroku-toolbelt"
 # Python
 brew "python"
 brew "python3"
